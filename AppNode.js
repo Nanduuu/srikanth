@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 //app.use(urlencodedparser);
 
 
-
+/*
 if (process.env.NODE_ENV === 'production') {
   // Serve any static filess
   app.use(express.static(path.join(__dirname, 'client/build')));
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-}
+} */
 
 
 
