@@ -4,9 +4,9 @@
   "scripts": {
    
     "server": "nodemon AppNode.js",
-	"start":"node AppNode.js",
+	"start":"node AppNode.js"
 	
-	"heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+	
   },
   "dependencies": {
     "body-parser": "^1.18.3",
