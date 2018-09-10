@@ -2,15 +2,23 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Button, Radio, Icon } from 'antd';
 import { Popover,Row, Col } from 'antd';
-import {Route , Switch} from 'react-router';
-import { Link } from 'react-router-dom';
+import {Route , Switch,Redirect} from 'react-router';
+import { Link ,withRouter} from 'react-router-dom';
 import Home from "./Home.js";
 import Why27k from "./Why27k";
 import Testimonials from "./Testimonials";
 import Contactus from "./Contactus";
 import SubmitForm from'./SubmitForm';
+import Optcpt from "./Optcpt";
+import DailySenarios from "./DailySenarios";
+import {connect} from 'react-redux';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import styled from 'styled-components';
+import Media from "react-media";
 
-
+const bodyStyle = {
+    backgroundColor : '#0066ff'
+}
 const { Header, Content, Footer , Sider} = Layout;
 
 const fontStyle ={
@@ -18,7 +26,11 @@ const fontStyle ={
   fontfamily : "Helvetica Neue",
   color: "black",
   
-}
+};
+
+const mapStateToProps = (state) => {
+  return {login : state.login};
+};
 
 class Frame extends React.Component{
 	constructor(props){
@@ -26,6 +38,9 @@ class Frame extends React.Component{
     this.state = {
     collapsed: false,
     visible: false,
+    Optcpt:"primary",
+    DailySenarios:"primary",
+    redirect:false
     };
 	}
 
@@ -43,13 +58,39 @@ class Frame extends React.Component{
     this.setState({
       collapsed: !this.state.collapsed,
     });}
+
+  OptcptButton=()=>{
+    this.setState({Optcpt:"danger",DailySenarios:"primary"})
+  }
+  DailySenarios=()=>{
+    this.setState({Optcpt:"primary",DailySenarios:"danger"})
+  }
+  componentWillMount(){
+
+    if(this.props.login == "loggedin"){
+      this.setState({redirect:false})
+    }
+    console.log(this.props.match);
+  }
+  LoginRedirect = ()=>{
+    if (this.state.redirect) {
+      return <Redirect to='/Login' />
+    }
+  }
+  setRedirect=()=>{
+    if(this.props.login == "notloggedin"){
+    this.setState({redirect:true})
+  }
+  }
 	render(){
 			return(
 				<div style={fontStyle}>
+      
+     
           <Row>
-					<Layout>
+					<Layout style={{background :"#8080ff"}}>
           <Row>
-            <Col style={{boxShadow:"2px 0px 2px black"}}>
+            <Col style={{boxShadow:"2px 0px 2px black"}} lg={24} sm={24} md={24}>
   					    				   
    				   
               <Row>
@@ -57,60 +98,115 @@ class Frame extends React.Component{
                 theme="light"
                 mode="horizontal"
                 defaultSelectedKeys={['1']}
-                style={{ lineHeight: '50px' }}
+                style={{ background:"white", lineHeight: '50px' ,color : "block" }}
               >
-              <Menu.Item key="1" style={{width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}}>Home <Link to = {"/"}></Link></Menu.Item>
+              <Menu.Item key="1" style={{ fontSize:"20px",width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}}>
+                  <Media query="(min-width: 720px)">
+                    {matches =>
+                      matches ? (
+                      <span><Icon type="home" theme="outlined" />Home</span>
+                      ) : (
+                      <Icon type="home" theme="outlined" />
+                      )
+                    }
+                    </Media>
+
+                <Link to = {"/"} ></Link>
+                </Menu.Item>
                      
-              <Menu.Item key="2" style={{width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}} >Why 27Tech <Link to = {"/Why27k"}></Link></Menu.Item>
+              <Menu.Item key="2" style={{ fontSize:"20px",width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}} >
+                  <Media query="(min-width: 720px)">
+                    {matches =>
+                      matches ? (
+                      <span><Icon type="question" theme="outlined" />Why 27Tek</span>
+                      ) : (
+                      <Icon type="question" theme="outlined" />
+                      )
+                    }
+                    </Media>
+
+              <Link to ={'/Why27k'}> </Link>
+              </Menu.Item>
               
               
-              <Menu.Item key="3" style={{width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}}>Testimonials<Link to = {"/Testimonials"}></Link></Menu.Item>
-        
-              
-              <Menu.Item key="4" style={{width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}}>Contact us<Link to = {"/Contactus"}></Link> </Menu.Item>
+              <Menu.Item key="3" style={{ fontSize:"20px",width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}}>
+
+                <Media query="(min-width: 720px)">
+                    {matches =>
+                      matches ? (
+                      <span><Icon type="database" theme="outlined" />Testimonials</span>
+                      ) : (
+                      <Icon type="database" theme="outlined" />
+                      )
+                    }
+                    </Media>
+                <Link to = {"/Testimonials"} ></Link>
+                </Menu.Item>
+
+              <Menu.Item key="4" style={{ fontSize:"20px",width:"25%",overflow:"hidden" ,textOverflow: 'ellipsis'}}>
+                    <Media query="(min-width: 720px)">
+                    {matches =>
+                      matches ? (
+                      <span><Icon type="team" theme="outlined" />Contact us</span>
+                      ) : (
+                      <Icon type="team" theme="outlined" />
+                      )
+                    }
+                    </Media>
+
+                <Link to = {"/Contactus"}>
+                </Link> </Menu.Item>
               </Menu>
         			</Row>
       				
     				
             </Col>
             </Row>
-    				<Content style={{ padding: '0 50px', marginTop: 1  }}>
+    				
       			
-              <div>
-             <Row >
-              
-              <Col md={20} lg={20} sm={24} >
-
-                  <Switch>
-      
-                      <Route exact path='/' component={Home}/>                                                           
-                      <Route path='/Why27k' component={Why27k}/>
-                      <Route path='/Testimonials' component={Testimonials}/>
-                      <Route path='/Contactus' component={Contactus}/>
-                      <Route path='/SubmitForm' component={SubmitForm}/ >
-                    
-                  </Switch>
-              </Col>
-              <Col md={4} lg={4} sm={24} class="ant-menu-dark" style={{padding : "5px"}}>
+              <div style={{borderWidth:"0px 0px 2px 0px" , borderStyle:"solid"}}>
+              <Row style={{marginTop:"10px"}}>
+              <Col md={24} lg={24} sm={24} >
               
               <Row >
-                    <Button type="primary" size='large' style={{ width :"80%",margin: "5px"}}> CPT/OPT   </Button>
+                <Col xl={12} lg={12} sm={12} xs={12}>
+                  <Link to = {"/Optcpt"}>  <Button  type="primary" size='large' style={{ background:"#011456", width :"100%",margin: "0px"}}> CPT/OPT  FAQ </Button></Link>
+                  </Col>
+                  <Col xl={12} lg={12} sm={12} xs={12}>
+                  <Link to ={"/DailySenarios"}><Button type="primary" size='large' style={{ background:"#011456", width :"100%",margin: "0px"}}>Daily Senarios</Button></Link>                  </Col>
               </Row>
 
               <Row>
-                    <Button type="primary" size='large' style={{ width: "80%", margin : "5px",overflow:"hidden" ,textOverflow: 'ellipsis'}}>Daily Senarios</Button>
+                  
               </Row>
-              <Row>
-                  <Button type="primary" size='large' style={{ borderRadius:"50%", width : "80%", margin : "5px"}}>FAQ</Button>
-              </Row>
+              
 
               </Col>
               </Row>
               </div>
+               
+             <Row >
+              <Content>
+              <Col md={24} lg={24} sm={24} >
+                  
+      
+                      <Route exact path= "/" component={Home}/>                                                           
+                      <Route path='/Why27k' component={Why27k}/>
+                      <Route path={'/Testimonials'} component={Testimonials}/>
+                      <Route path={'/Contactus'} component={Contactus}/>
+                      <Route path={'/SubmitForm'} component={SubmitForm}/ >
+                      <Route path={'/Optcpt'} component={Optcpt}/ >
+                      <Route path={'/DailySenarios' } component={DailySenarios}/ >
+                  
+              </Col>
+              </Content>
+              </Row>
+            
+              
 
-    				</Content>
-    				<Footer theme="dark" style={{ textAlign: 'center' ,width:'100%' ,boxShadow:"2px 2px 10px black ", bottom:'0px'}}>
-      						  <Col span={20}>
+    				
+    				<Footer theme="light" style={{background:"#011456",textAlign: 'center' ,width:'100%' ,boxShadow:"2px 2px 10px black ", bottom:'0px'}}>
+      						  <Col span={24}>
                     <Popover
                         content={<a onClick={this.hide}>Close</a>}
                         title="Need your role and responsibilities to help you !! Please do Whatsapp for Quick response - +91 8977888954"
@@ -118,7 +214,7 @@ class Frame extends React.Component{
                         visible={this.state.visible}
                         onVisibleChange={this.handleVisibleChange}
                       >
-                        <Button class = "primary">Whatsapp me !! For quick respond <Icon type="tablet" ></Icon></Button>
+                        <Button class = "primary"><b>Click me ! for my contact </b> <Icon type="tablet" ></Icon></Button>
                       </Popover>
                       </Col>
     				</Footer>
@@ -137,5 +233,7 @@ class Frame extends React.Component{
 
 
 }
+
+
 
 export default Frame;

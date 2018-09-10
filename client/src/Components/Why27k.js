@@ -1,9 +1,9 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+
 import { Button, Radio, Icon } from 'antd';
 import { Row, Col } from 'antd';
 import { Carousel } from 'antd';
-
+var image = require('./Whytech.jpg');
 
 const  cstyle = {
   textAlign: 'center',
@@ -21,16 +21,14 @@ class Why27k extends React.Component{
 
 	render(){
 		return(
-					<div>
-              <h1> Why 27 technologies??</h1>
-              <Carousel autoplay >
-   						 	 <div style={cstyle}><h3>Will give you real time training with own test machines</h3></div>
-								 <div style={cstyle}><h3>Will give you knowledge, How the actual work is happening in IT world</h3></div>
-								 <div style={cstyle}><h3> Every day task will give you by trainer</h3></div>
-					   	</Carousel>
-
-                             
-          </div>
+			<div>
+              <h1 style={{color:"white",marginTop:"50px"}}> Why 27 technologies??</h1>
+             <Row>
+             	<Col xl={24} sm={24} md={24}>
+               		<img style={{width:"100%"}} src={image}></img> 
+               </Col> 
+             </Row>      
+          	</div>
 
 			);
 	}
@@ -40,3 +38,11 @@ class Why27k extends React.Component{
 }
 
 export default Why27k;
+
+
+/* <Carousel autoplay >
+   						 	 <div style={cstyle}><h3>Will give you real time training with own test machines</h3></div>
+								 <div style={cstyle}><h3>Will give you knowledge, How the actual work is happening in IT world</h3></div>
+								 <div style={cstyle}><h3> Every day task will give you by trainer</h3></div>
+					   	</Carousel>
+*/

@@ -2,14 +2,14 @@ import React from 'react';
 import formurlencoded from 'form-urlencoded';
 import {Route , Switch , Redirect} from 'react-router';
 import { Link } from 'react-router-dom';
-//import { Drawer, Form, Button, Col, Row, Input, Select, Mention,DatePicker } from 'antd';
 import { Drawer, Form, Button, Col, Row, Input, Select, Mention,DatePicker } from 'antd';
 const { Option } = Select;
 
 const style={
 	
 	textAlign:"right",
-	padding:'10px'
+	paddingRight:'10px',
+	margin:"auto"
 }
 
 
@@ -59,7 +59,7 @@ constructor(props){
 		}
 		timeChange = (e)=>{
 			
-			alert(e.target.value);
+			e.preventDefault();
 			this.setState ({Time :e.target.value})
 
 		}
@@ -119,9 +119,9 @@ constructor(props){
 render(){
 
 	return(
-			<div style={{margin:"5px"}}>
+			<div style={{margin:"5px", fontSize:"20px", color:"white"}}>
 			{this.redirect()}
-			<h2>Please enter the details</h2>
+			<h2 style={{color:"white"}}>Please enter the details</h2>
 			<form onSubmit = {this.handleSubmit}>
 					<Row >
 					<Col span={6} style={style}><lable > Name </lable></Col>
@@ -151,9 +151,9 @@ render(){
 					<Row >
 					<Col span={6}style={style}><lable> Time Zone </lable></Col>
 					<Col span={12} style={{background:"white"}}>
-						<lable><Input type="radio" onChange={this.timeChange} name="timezone" value="CST" checked/>CST</lable>
-						<lable><Input type="radio" onChange={this.timeChange} name="timezone" value="IST"/>IST</lable>
-						<lable><Input type="radio" onChange={this.timeChange} name="timezone" value="PST"/>PST</lable>
+						<lable style={{color:"black"}}><Input type="radio" onChange={this.timeChange} name="timezone" value="CST" checked/>CST</lable>
+						<lable style={{color:"black"}}><Input type="radio" onChange={this.timeChange} name="timezone" value="IST"/>IST</lable>
+						<lable style={{color:"black"}}><Input type="radio" onChange={this.timeChange} name="timezone" value="PST"/>PST</lable>
 					</Col>
 
 					</Row>
@@ -166,10 +166,10 @@ render(){
 
 						<Col span={12}>
 						<Col span={12}>
-						<Input type="submit"/>
+						<Input type="submit"/> 
 						</Col>
 						<Col span={12}>
-						<Link to='/'><Button style={{width:'100%'}}>Cancel</Button></Link>
+						<Link to='/'><Button type="danger" style={{width:'100%'}}>Cancel</Button></Link>
 						</Col>
 						
 						

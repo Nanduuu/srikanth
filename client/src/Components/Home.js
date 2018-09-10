@@ -7,22 +7,21 @@ import {Route , Switch} from 'react-router';
 import { Link } from 'react-router-dom';
 
 
-
-
 class Home extends React.Component{
 
 
 	render(){
 		return(
 					<div>
-                             <h1> Are you looking for ??</h1>
-                             <div>
+                             
+                             <div style={{margin:"30px 0px 30px 0px"}}>
+                             <h1 style={{color:"white"}}> Are you looking for ??</h1>
                              <Row>
-                             	<Col span={12}>
-                              	 <Link to = "/SubmitForm"><Button style={{width:'100%'}}>Traning</Button> </Link>   
+                             	<Col xl={12} sm={12} md={12}>
+                              	 <Link to = "/SubmitForm"><Button style={{ fontSize:"16px",width:'100%'}}><b>Tranning</b></Button> </Link>   
                                 </Col>
-                             	<Col span={12}>
-                                 <Link to = "/SubmitForm"><Button style={{width:'100%'}}>Job Support</Button> </Link>  
+                             	<Col xl={12} sm={12} md={12}>
+                                 <Link to = "/SubmitForm"><Button style={{fontSize:"16px",width:'100%'}}><b>Job Support</b></Button> </Link>  
 								</Col>
 							 </Row>
                              </div>

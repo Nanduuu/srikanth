@@ -12,25 +12,25 @@ class Testimonials extends React.Component {
     return (
       <div style={{margin:'5px'}}>
 
-        <div style={{ background: '#ECECEC', padding: '30px' }}>
+        <div style={{ padding: '30px'  }}>
         <Row gutter={24}>
           <Col lg={8} md={12} sm={24}>
-            <Card title=" - Mehak Nair" bordered={false}>
-           <p>The staff was amazing they have been extremely professional and helpful through out my job. </p>
+            <Card title=" - Mehak Nair" bordered={true} headStyle={{fontSize:"30px"}}>
+           <p >The staff was amazing they have been extremely professional and helpful through out my job. </p>
           <p> My organization hired me for Cyberark Technology. Due to budget issues they moved me to Beyond trust tool. </p>
           <p>When i explained the issue to 27 tech masters team. They changed the support person who are good in Cyberark and Beyond Trust.</p>
           <p>Replacement of trainers they have done in the right way. </p>
             </Card>
           </Col>
           <Col lg={8} md={12} sm={24}>
-            <Card title="Harsitha" bordered={false}>
+            <Card title=" - Harsitha" bordered={true} >
              <p>If a person is looking for job support on IDM tools, 1st point of contact will be 27 tech masters. </p>
           <p> These trainers trained me and my friend showing the real time environment and understand the project in a right way. </p>
           <p>This helps both of us and makes confident. </p>
             </Card>
           </Col>
           <Col lg={8} md={12} sm={24}>
-            <Card title=" - Rahul & Vinay" bordered={false}>
+            <Card title=" - Rahul & Vinay" bordered={false} >
               <p>
             Till now i worked on 2 technologies Sailpoint and CA Site Minder. </p>
            <p> I got good trainers for both the technologies. They are with core values and good business ethics. </p>
@@ -42,10 +42,10 @@ class Testimonials extends React.Component {
         </Row>
        </div>
 
-        <div style={{ background: '#ECECEC', padding: '30px' }}>
+        <div style={{ padding: '30px' }}>
         <Row gutter={24}>
           <Col lg={8} md={12} sm={24}>
-            <Card title="Reshma" bordered={false}>
+            <Card title="Reshma" bordered={false} >
             <p>The service you provide by helping us find the right source for help when needed is amazing. 
                   It helps us learn new technologies and provide the best at the client location.
                 Please continue doing the same there are lot of people who need this including myself. Thank you</p>
@@ -72,7 +72,7 @@ class Testimonials extends React.Component {
 
 
 
-       <div style={{ background: '#ECECEC', padding: '30px' }}>
+       <div style={{ padding: '30px' }}>
         <Row gutter={24}>
           <Col lg={8} md={12} sm={24}>
             <Card title="Raghu." bordered={false}>
@@ -81,7 +81,7 @@ class Testimonials extends React.Component {
             </Card>
           </Col>
           <Col lg={8} md={12} sm={24}>
-            <Card title="Harsitha" bordered={false}>
+            <Card title="Harsitha" bordered={false} >
             <p>Congratulations for starting a company !!
               I would say that it was a great experience overall training and support in the initial days.</p>
 

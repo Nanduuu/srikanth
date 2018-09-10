@@ -4,11 +4,16 @@ import './App.css';
 import Frame from './Components/Frame';
 import 'antd/dist/antd.css';
 import WebFont from 'webfontloader';
+import {BrowserRouter} from 'react-router-dom';
+import {Route , Switch, Redirect} from 'react-router';
+import Login from './Components/Login';
+import Logo from './Components/Logo'
+
 
 
 const fontStyle = {
 
-  fontfamily : "Chinese Quote",
+  fontFamily : " 'Titillium Web','Chinese Quote'",
   
   height:"100%"
 }
@@ -19,16 +24,22 @@ WebFont.load({
   }
 });
 
+ //<Route path ="/Login" component={Login}/>
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App" style={fontStyle}>
-      	
-        <Frame/>
-      </div>
+        
+        <div className="App" style={fontStyle}>
+            <Logo/>
+            <Frame/>
+
+        </div>
+      
     );
   }
 }
+
 
 export default App;
