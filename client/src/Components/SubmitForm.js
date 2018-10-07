@@ -2,6 +2,7 @@ import React from 'react';
 import formurlencoded from 'form-urlencoded';
 import {Route , Switch , Redirect} from 'react-router';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import { Drawer, Form, Button, Col, Row, Input, Select, Mention,DatePicker } from 'antd';
 const { Option } = Select;
 
@@ -11,7 +12,6 @@ const style={
 	paddingRight:'10px',
 	margin:"auto"
 }
-
 
 class SubmitForm extends React.Component{
 
@@ -52,9 +52,10 @@ constructor(props){
 			this.setState ({Technology :e.target.value});
 
 		}
-		dateChange = (e)=>{
+		dateChange = (dates: moment, moment, dateStrings: string, string)=>{
 			
-			this.setState ({StartDate:e.target.value})
+			this.setState ({StartDate:moment})
+
 
 		}
 		timeChange = (e)=>{
@@ -69,7 +70,7 @@ constructor(props){
 
 		}
 
-
+		
 		handleSubmit =(event)=>{
 			event.preventDefault();
 
@@ -84,7 +85,7 @@ constructor(props){
 			}
 
 			
-			alert(this.state.Time);
+			
 			var packet={method : 'POST',
 						body:formurlencoded(data),
 						headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }};
@@ -114,9 +115,12 @@ constructor(props){
     }
 
   }
-
+  disabledDate = (current)=>{
+			return current && current < moment().endOf('day');
+		}
 
 render(){
+
 
 	return(
 			<div style={{margin:"5px", fontSize:"20px", color:"white"}}>
@@ -140,12 +144,12 @@ render(){
 
 					<Row>
 					<Col span={6}  style={style}><lable> Breif about requirement </lable></Col>
-					<Col span={12}><textarea style={{width:'100%',height:'50%'}} onChange={this.breifChange} required/></Col>
+					<Col span={12}><textarea style={{width:'100%',height:'50%',color:"black"}} onChange={this.breifChange} required/></Col>
 					</Row>
 
 					<Row >
 					<Col span={6} style={style} ><lable> Date on required </lable></Col>
-					<Col span={12}><Input type="date" onChange={this.dateChange} required/></Col>
+					<Col span={12}><DatePicker disabledDate={this.disabledDate} onChange={this.dateChange} style={{width:"100%"}} required/></Col>
 					</Row>
 
 					<Row >

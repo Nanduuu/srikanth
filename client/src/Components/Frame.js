@@ -15,6 +15,7 @@ import {connect} from 'react-redux';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from 'styled-components';
 import Media from "react-media";
+import Login from "./Login";
 
 const bodyStyle = {
     backgroundColor : '#0066ff'
@@ -125,7 +126,7 @@ class Frame extends React.Component{
                     }
                     </Media>
 
-              <Link to ={'/Why27k'}> </Link>
+              <Link to = {'/Why27k'}> </Link>
               </Menu.Item>
               
               
@@ -189,15 +190,17 @@ class Frame extends React.Component{
               <Content>
               <Col md={24} lg={24} sm={24} >
                   
-      
-                      <Route exact path= "/" component={Home}/>                                                           
-                      <Route path='/Why27k' component={Why27k}/>
-                      <Route path={'/Testimonials'} component={Testimonials}/>
-                      <Route path={'/Contactus'} component={Contactus}/>
-                      <Route path={'/SubmitForm'} component={SubmitForm}/ >
-                      <Route path={'/Optcpt'} component={Optcpt}/ >
-                      <Route path={'/DailySenarios' } component={DailySenarios}/ >
-                  
+                    <Switch>
+                      <Route exact path= {"/"} component={Home}/>                                                           
+                      <Route path= {'/Why27k' } component={Why27k}/>
+                      <Route path= {'/Testimonials' } component={Testimonials}/>
+                      <Route path= {'/Contactus' } component={Contactus}/>
+                      <Route path= {'/Optcpt' } component={Optcpt}/>
+                      <Route path= {'/DailySenarios' } component={DailySenarios}/>
+                      <Route path= {'/SubmitForm' } component={SubmitForm}/>
+                      <Route path={'/Login'} component={Login}/>
+                      
+                    </Switch>
               </Col>
               </Content>
               </Row>
@@ -214,8 +217,11 @@ class Frame extends React.Component{
                         visible={this.state.visible}
                         onVisibleChange={this.handleVisibleChange}
                       >
-                        <Button class = "primary"><b>Click me ! for my contact </b> <Icon type="tablet" ></Icon></Button>
+                        <Button class = "primary"><Icon type="tablet" ></Icon></Button>
                       </Popover>
+                      <a href="https://facebook.com/techmaster.s.5" target="_blank"><Button><Icon type="facebook" theme="outlined" /></Button></a>
+                      <a href="https://linkedin.com/in/27tekmasters" target="_blank"><Button><Icon type="linkedin" theme="outlined" /></Button></a>
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=27tekmasters@gmail.com&su=SUBJECT&body=BODY" target="_blank"><Button><Icon type="google" theme="outlined" /></Button></a>
                       </Col>
     				</Footer>
   					</Layout>

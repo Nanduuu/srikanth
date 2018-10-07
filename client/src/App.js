@@ -7,7 +7,8 @@ import WebFont from 'webfontloader';
 import {BrowserRouter} from 'react-router-dom';
 import {Route , Switch, Redirect} from 'react-router';
 import Login from './Components/Login';
-import Logo from './Components/Logo'
+import Logo from './Components/Logo';
+import Fileload from './Components/Fileload';
 
 
 
@@ -24,17 +25,14 @@ WebFont.load({
   }
 });
 
- //<Route path ="/Login" component={Login}/>
-
 
 class App extends Component {
   render() {
     return (
         
         <div className="App" style={fontStyle}>
-            <Logo/>
-            <Frame/>
-
+          <Logo/>
+          <Frame/> 
         </div>
       
     );
